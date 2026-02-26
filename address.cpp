@@ -3,35 +3,26 @@
 #include "address.h"
 
 Address::Address(){
-	street = "test";
-	city = "test";
-	state = "test";
-	zip = "test";
+	std::string street;
+	std::string city;
+	std::string state;
+	std::string zip;
 } // end constructor
 
 void Address::init(std::string street, std::string city, std::string state, std::string zip){
 	// make stringstream 
-	std::stringstream ss;
-	std::string nStreet;
-	std::string nCity;
-	std::string nState;
-	std::string nZip;
-
+	std::stringstream converter;
 	// separate
-	getline(ss, nStreet, ',');
-	getline(ss, nCity, ',');
-	getline(ss, nState, ',');
-	getline(ss, nZip);
+	converter.clear();
+	converter.str("");
 
-	// pass
-	ss.clear();
-	ss.str("");
-
-	ss << nStreet << " " << nCity << " " << nState << " " << nZip;
-	ss >> street >> city >> state >> zip;
-
+	getline(converter, street, ',');
+	getline(converter, city, ',');
+	getline(converter, state, ',');
+	getline(converter, zip, ',');
 } // end init
  
 void Address::printAddress(){
 	std::cout << street << ", " << city << ", " << state << ", " << zip << std::endl;
+
 } // end printAddress
