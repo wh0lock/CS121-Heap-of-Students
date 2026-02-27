@@ -59,22 +59,28 @@ void printStudents(std::vector<Student*>& students){
 } // end printStudents
 
 void findStudent(std::vector<Student*>& students){
-	for (Student* student: students){
-		std::string lastName;
-		std::cout << "last name of student: ";
-		std::cin >> lastName;
-		std::string currentLine;
-		
-		std::string studentString = student->getLastFirst();
+	std::string lastName;
 
-		int result = studentString.find(lastName);
+	std::cout << "last name of student: ";
+	std::cin >> lastName;
+
+	std::ifstream fileOut;
+
+	fileOut.open("students.csv");
+
+	std::string currentLine;
+
+	for (Student* student: students){
+		std::getline(fileOut, currentLine);
+
+		int result = currentLine.find(lastName);
 
 		if (result = std::string::npos){
-			std::cout << result;
-		}else{
-			std::cout << lastName << " not found :(";
+			std::cout << "not found" << std::endl;
+		} else{
+			std::cout << currentLine;
 		} // end if
 	} // end for
+	fileOut.close();
 } // end findStudent
-
 
